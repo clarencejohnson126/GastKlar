@@ -1,26 +1,212 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design-Tokens — einzige Quelle ist DESIGN.md (Richtung „The pinned poster“, taste-skill v2).
+ * Standardpaletten sind zurückgesetzt: im Code sind nur diese Werte nutzbar.
+ */
+@theme {
+  --color-*: initial;
+  /* Marke (fix) */
+  --color-ocean: #0f6297;
+  --color-white: #ffffff;
+  --color-sand: #d9a66c;
+  --color-ice: #eaf4fa;
+  /* Abgeleitet, kontrastgeprüft */
+  --color-ink: #102a3d;
+  --color-ocean-deep: #0b4c76;
+  --color-muted: #4a5f70;
+  --color-gold-deep: #8a5a1f;
+  --color-sand-soft: #f6ebdd;
+  --color-field: #6b8396;
+  --color-line: #c9dce8; /* nur Formularfelder */
+  --color-danger: #b42318;
+  --color-danger-soft: #fdecea;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-*: initial;
+  --font-display: var(--font-general), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-general), ui-sans-serif, system-ui, sans-serif;
+
+  /* Fünf Stufen: small · body · lead · head · display. Alte Namen zeigen auf diese Stufen. */
+  --text-*: initial;
+  --text-xs: 0.875rem;
+  --text-xs--line-height: 1.4;
+  --text-sm: 1.125rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.125rem;
+  --text-base--line-height: 1.5;
+  --text-lg: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --text-lg--line-height: 1.3;
+  --text-xl-compact: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --text-xl-compact--line-height: 1;
+  --text-xl: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --text-xl--line-height: 1;
+  --text-2xl-compact: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --text-2xl-compact--line-height: 1;
+  --text-2xl: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --text-2xl--line-height: 1;
+  --text-hero: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --text-hero--line-height: 1;
+  --text-statement: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --text-statement--line-height: 1;
+  --text-city: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --text-city--line-height: 1;
+  --text-display: clamp(3.75rem, 9vw, 8.75rem);
+  --text-display--line-height: 0.88;
+  --text-clock: clamp(3.75rem, 9vw, 8.75rem);
+  --text-clock--line-height: 0.88;
+
+  /* Eckige Formen (Richtungsblatt: square corners) */
+  --radius-*: initial;
+  --radius-card: 0;
+  --radius-control: 0;
+  --radius-hero: 0;
+  --radius-pill: 999px;
+
+  /* Schatten nur für wirklich Schwebendes (mobiles Menü) */
+  --shadow-*: initial;
+  --shadow-soft: 0 12px 32px rgb(16 42 61 / 0.18);
+
+  --ease-soft: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --container-content: 90rem;
+  --container-prose: 64ch;
+  --container-wide: 100rem;
+  --container-headline: 15ch;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-white);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    font-feature-settings: "tnum" 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-wrap: balance;
+    hyphens: manual;
+    overflow-wrap: break-word;
+  }
+
+  @media (width < 48rem) {
+    h1,
+    h2,
+    h3 {
+      hyphens: auto;
+    }
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ocean);
+    outline-offset: 3px;
+  }
+
+  .on-ocean :focus-visible,
+  .on-ink :focus-visible {
+    outline-color: var(--color-white);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Ein Paar Außenränder für die ganze Seite */
+  .container-page {
+    margin-inline: auto;
+    width: 100%;
+    max-width: var(--container-content);
+    padding-inline: 1rem;
+  }
+
+  @media (width >= 48rem) {
+    .container-page {
+      padding-inline: 1.75rem;
+    }
+  }
+
+  .text-link {
+    color: var(--color-ocean);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .text-link:hover {
+    color: var(--color-ocean-deep);
+  }
+}
+
+/* Bewegung: Eintritt der Teile jeder Sektion (nur mit JS, Inhalt bleibt ohne Skript sichtbar) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms var(--ease-out-quint),
+    transform 700ms var(--ease-out-quint);
+  transition-delay: calc(var(--reveal-i, 0) * 80ms);
+}
+
+.js [data-reveal][data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Ein bewegtes Bild: langsamer Zoom auf dem Hero-Foto */
+@keyframes slow-settle {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.slow-settle {
+  animation: slow-settle 2400ms var(--ease-out-quint) both;
+}
+
+/* Rückmeldung auf Bedienelementen */
+.press {
+  transition:
+    transform 160ms var(--ease-soft),
+    background-color 160ms var(--ease-soft),
+    color 160ms var(--ease-soft);
+}
+
+.press:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0ms !important;
+    scroll-behavior: auto !important;
+  }
 }

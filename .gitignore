@@ -39,3 +39,24 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# lokale Lead-Outbox (Dev/Test, enthält personenbezogene Daten)
+/.outbox/
+
+# playwright
+/test-results/
+/playwright-report/
+
+# env: Beispiel darf committet werden
+!.env.example
+/.playwright-mcp/
+
+# Arbeitsdateien Design-Prozess, Fremd-Skill-Texte, Archiv-Originale
+/.taste-skill/
+/screenshots/
+/docs/design-skills/
+/assets/*.jpg
+/.impeccable/
+
+# Logs von Tools/MCP-Servern
+*.log
