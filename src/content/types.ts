@@ -85,6 +85,7 @@ export interface Content {
     addons: { title: string; intro: string; tags: Record<AddonKey, string>; collageAlt: [string, string] };
     hostStatement: string;
     hostImageAlt: string;
+    handoverAlt: string;
     regionImageAlt: string;
     heroImageAlt: string;
     imageCredit: string;

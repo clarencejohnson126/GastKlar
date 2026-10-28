@@ -42,15 +42,15 @@ export const en: Content = {
     v3: {
       heroSentence: "Turnover cleaning and guest services for holiday apartments in Mannheim, Heidelberg and Ludwigshafen. Designed by hosts.",
       panels: [
-        { verb: "Clean.", time: "From 11:00", text: "Kitchen, bathroom, surfaces and floors, thoroughly and to your checklist.", image: "/images/kueche.jpg", alt: "Clean kitchen with a refilled coffee jar" },
+        { verb: "Clean.", time: "From 11:00", text: "Kitchen, bathroom, surfaces and floors, thoroughly and to your checklist.", image: "/images/reinigen-kueche.jpg", alt: "A team member wiping the worktop of a period kitchen" },
         { verb: "Make up.", time: "By 15:00", text: "Fresh beds with your linen, towels laid out, everything topped up.", image: "/images/betten-beziehen.jpg", alt: "Hands smoothing a white bed sheet" },
       ],
       includedTitle: "Always included.",
       blocks: [
-        { title: "Kitchen and bathroom", items: ["Thorough kitchen clean", "Bathroom, shower and toilet", "Surfaces in every room", "Floors vacuumed and mopped"], image: "/images/bad.jpg", alt: "Clean bathroom with folded towels" },
+        { title: "Kitchen and bathroom", items: ["Thorough kitchen clean", "Bathroom, shower and toilet", "Surfaces in every room", "Floors vacuumed and mopped"], image: "/images/reinigen-bad.jpg", alt: "A team member cleaning the bathroom washbasin" },
         { title: "Beds and towels", items: ["Beds stripped", "Remade with your fresh linen", "Towels changed", "Used linen set aside"], image: "/images/abziehen.jpg", alt: "Hands stripping a duvet cover" },
         { title: "Topping up", items: ["Toilet paper", "Soap and washing-up liquid", "Coffee and tea", "All from your own stock, as agreed"], image: "/images/auffuellen.jpg", alt: "Hands placing toilet paper and soap on a shelf" },
-        { title: "Check and report", items: ["Visual check against your checklist", "Anything unusual reported straight away", "Completion report with photos on request", "Apartment handed over guest-ready"], image: "/images/schluesseltresor.jpg", alt: "Key safe beside a period building's front door" },
+        { title: "Check and report", items: ["Visual check against your checklist", "Anything unusual reported straight away", "Completion report with photos on request", "Apartment handed over guest-ready"], image: "/images/fertigmeldung.jpg", alt: "A team member photographing the freshly made bed for the completion report" },
       ],
       addonsTitle: "Additional services",
       addonFormat: { keys: "in person or key safe", guestCommunication: "at agreed times", laundry: "collect, wash, return", repairs: "small defects", renovation: "painting, flooring", hostDashboard: "CRM for your properties", shortNotice: "cover and emergencies", other: "your request" },
@@ -135,6 +135,7 @@ export const en: Content = {
     },
     hostStatement: "Over 10 years of first-hand hosting experience.",
     hostImageAlt: "Guest-ready living room with sofa and cushions",
+    handoverAlt: "Key handover at the apartment door",
     regionImageAlt: "View from a holiday apartment over the rooftops of an old town by a river",
     heroImageAlt: "Freshly made bed with folded towels in a bright holiday apartment",
     imageCredit: "Apartment images: AI-generated example visualisations. City images:",

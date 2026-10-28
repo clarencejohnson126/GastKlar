@@ -331,7 +331,7 @@ export function PlannerCta({ locale, c }: { locale: Locale; c: Content }) {
   return (
     <section aria-labelledby="planner-title" className="on-ink grid bg-ink text-white lg:min-h-[90svh] lg:grid-cols-12">
       <div className="relative h-[56svh] lg:col-span-7 lg:h-auto">
-        <Image src="/images/schluesseltresor.jpg" alt={v.blocks[3].alt} fill sizes="(min-width: 768px) 58vw, 100vw" className="object-cover" />
+        <Image src="/images/schluesseluebergabe.jpg" alt={c.home.handoverAlt} fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
       </div>
       <div className="px-4 py-16 md:px-7 lg:col-span-5 lg:px-16 lg:py-24">
         <h2 id="planner-title" {...r(0)} className="text-xl">

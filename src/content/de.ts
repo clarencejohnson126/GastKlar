@@ -42,15 +42,15 @@ export const de: Content = {
     v3: {
       heroSentence: "Wechselreinigung und Gästeservice für Ferienwohnungen in Mannheim, Heidelberg und Ludwigshafen. Von Gastgebern gedacht.",
       panels: [
-        { verb: "Reinigen.", time: "Ab 11:00", text: "Küche, Bad, Oberflächen und Böden, gründlich und nach Ihrer Checkliste.", image: "/images/kueche.jpg", alt: "Saubere Küche mit aufgefülltem Kaffeeglas" },
+        { verb: "Reinigen.", time: "Ab 11:00", text: "Küche, Bad, Oberflächen und Böden, gründlich und nach Ihrer Checkliste.", image: "/images/reinigen-kueche.jpg", alt: "Eine Mitarbeiterin wischt die Arbeitsfläche einer Altbauküche" },
         { verb: "Beziehen.", time: "Bis 15:00", text: "Frische Betten mit Ihrer Wäsche, Handtücher bereit, alles aufgefüllt.", image: "/images/betten-beziehen.jpg", alt: "Hände ziehen ein weißes Bettlaken glatt" },
       ],
       includedTitle: "Immer dabei.",
       blocks: [
-        { title: "Küche und Bad", items: ["Küche gründlich reinigen", "Bad, Dusche und WC reinigen", "Oberflächen in allen Räumen", "Böden saugen und wischen"], image: "/images/bad.jpg", alt: "Sauberes Bad mit gefalteten Handtüchern" },
+        { title: "Küche und Bad", items: ["Küche gründlich reinigen", "Bad, Dusche und WC reinigen", "Oberflächen in allen Räumen", "Böden saugen und wischen"], image: "/images/reinigen-bad.jpg", alt: "Ein Mitarbeiter reinigt das Waschbecken im Bad" },
         { title: "Betten und Handtücher", items: ["Betten abziehen", "Mit Ihrer frischen Wäsche neu beziehen", "Handtücher wechseln", "Gebrauchte Wäsche bereitlegen"], image: "/images/abziehen.jpg", alt: "Hände ziehen einen Bettbezug ab" },
         { title: "Auffüllen", items: ["Toilettenpapier", "Seife und Spülmittel", "Kaffee und Tee", "Alles aus Ihrem Bestand, im abgestimmten Umfang"], image: "/images/auffuellen.jpg", alt: "Hände stellen Toilettenpapier und Seife ins Regal" },
-        { title: "Prüfen und melden", items: ["Sichtprüfung nach Ihrer Checkliste", "Auffälligkeiten sofort melden", "Fertigmeldung mit Fotos auf Wunsch", "Wohnung gastbereit übergeben"], image: "/images/schluesseltresor.jpg", alt: "Schlüsseltresor neben einer Altbau-Haustür" },
+        { title: "Prüfen und melden", items: ["Sichtprüfung nach Ihrer Checkliste", "Auffälligkeiten sofort melden", "Fertigmeldung mit Fotos auf Wunsch", "Wohnung gastbereit übergeben"], image: "/images/fertigmeldung.jpg", alt: "Ein Mitarbeiter fotografiert das frisch bezogene Bett für die Fertigmeldung" },
       ],
       addonsTitle: "Zusatzleistungen",
       addonFormat: { keys: "persönlich oder per Tresor", guestCommunication: "zu vereinbarten Zeiten", laundry: "abholen, waschen, bringen", repairs: "kleine Mängel", renovation: "Anstrich, Boden", hostDashboard: "CRM für Ihre Objekte", shortNotice: "Ersatz und Notfall", other: "Ihr Wunsch" },
@@ -135,6 +135,7 @@ export const de: Content = {
     },
     hostStatement: "Über 10 Jahre eigene Host-Erfahrung.",
     hostImageAlt: "Gastbereites Wohnzimmer mit Sofa und Kissen",
+    handoverAlt: "Schlüsselübergabe an der Wohnungstür",
     regionImageAlt: "Blick aus einer Ferienwohnung über die Dächer einer Altstadt am Fluss",
     heroImageAlt: "Frisch bezogenes Bett mit gefalteten Handtüchern in einer hellen Ferienwohnung",
     imageCredit: "Wohnungsbilder: KI-generierte Beispielvisualisierungen. Stadtbilder:",
