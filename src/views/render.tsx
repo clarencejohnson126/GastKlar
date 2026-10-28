@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { QuoteForm } from "@/components/QuoteForm";
-import { AddonLineup, FounderLetter, HomeFaq, Included, PinnedTurnover, Places, PlannerCta } from "@/components/home";
+import { HomeSections } from "@/components/home";
 import {
   AddonsList,
   CoreService,
@@ -95,17 +95,7 @@ function Shell({ locale, id, c, children }: { locale: Locale; id: PageId; c: Con
   return (
     <>
       <span id="top" />
-      {id === "home" ? (
-        // Startseite: die Navigation sitzt im Hero (Richtungsblatt „Name split to corners“)
-        <a
-          href="#inhalt"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-ocean focus:px-4 focus:py-3 focus:text-white"
-        >
-          {c.nav.skip}
-        </a>
-      ) : (
-        <Header locale={locale} pageId={id} c={c} />
-      )}
+      <Header locale={locale} pageId={id} c={c} />
       <main id="inhalt" tabIndex={-1} className="outline-none">
         {children}
       </main>
@@ -117,15 +107,7 @@ function Shell({ locale, id, c, children }: { locale: Locale; id: PageId; c: Con
 
 function HomeView({ locale, c }: { locale: Locale; c: Content }) {
   return (
-    <>
-      <PinnedTurnover locale={locale} c={c} />
-      <Included c={c} />
-      <AddonLineup c={c} />
-      <FounderLetter c={c} />
-      <Places locale={locale} c={c} />
-      <HomeFaq locale={locale} c={c} />
-      <PlannerCta locale={locale} c={c} />
-    </>
+    <HomeSections locale={locale} c={c} />
   );
 }
 
@@ -133,7 +115,7 @@ function ServicesView({ locale, c }: { locale: Locale; c: Content }) {
   const s = c.services;
   return (
     <>
-      <PageIntro title={s.h1} intro={s.intro} image={{ src: "/images/bad.jpg", alt: c.home.story.steps[2].alt }}>
+      <PageIntro title={s.h1} intro={s.intro} image={{ src: "/images/bad-v3.jpg", alt: c.home.story.steps[2].alt }}>
         <div className="mt-8">
           <CtaLink href={pathFor("quote", locale)}>{c.cta.primary}</CtaLink>
         </div>
@@ -174,7 +156,7 @@ function AboutView({ locale, c }: { locale: Locale; c: Content }) {
   const a = c.about;
   return (
     <>
-      <PageIntro title={a.h1} intro={a.intro} image={{ src: "/images/betten-beziehen.jpg", alt: c.home.story.steps[3].alt }} />
+      <PageIntro title={a.h1} intro={a.intro} image={{ src: "/images/betten-beziehen-v3.jpg", alt: c.home.story.steps[3].alt }} />
       <Section labelledBy="story-title">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
@@ -199,10 +181,6 @@ function AboutView({ locale, c }: { locale: Locale; c: Content }) {
             </li>
           ))}
         </ul>
-      </Section>
-      <Section labelledBy="operator-title">
-        <H2 id="operator-title">{a.operatorTitle}</H2>
-        <p className="mt-4 max-w-prose">{a.operator}</p>
       </Section>
       <FinalCta locale={locale} c={c} />
     </>
@@ -255,9 +233,9 @@ function QuoteView({ locale, c }: { locale: Locale; c: Content }) {
 }
 
 const regionImages = {
-  mannheim: (c: Content) => ({ src: "/images/wohnzimmer.jpg", alt: c.home.hostImageAlt }),
+  mannheim: (c: Content) => ({ src: "/images/wohnzimmer-v3.jpg", alt: c.home.hostImageAlt }),
   heidelberg: (c: Content) => ({ src: "/images/region/view-of-heidelberg-castle-alte-brucke-and.jpg", alt: c.home.regionImageAlt }),
-  ludwigshafen: (c: Content) => ({ src: "/images/schluesseltresor.jpg", alt: c.home.addons.collageAlt[0] }),
+  ludwigshafen: (c: Content) => ({ src: "/images/schluesseltresor-v3.jpg", alt: c.home.addons.collageAlt[0] }),
 } as const;
 
 function RegionView({ locale, c, region }: { locale: Locale; c: Content; region: NonNullable<ReturnType<typeof regionOf>> }) {
@@ -303,19 +281,50 @@ function RegionView({ locale, c, region }: { locale: Locale; c: Content; region:
   );
 }
 
-function LegalView({ doc, c }: { doc: Content["legal"]["privacy"]; c: Content }) {
+function LegalView({ doc, c }: { doc: Content["legal"]["privacy"] & { sections?: { title: string; lines: string[] }[] }; c: Content }) {
   return (
     <Section>
-      <h1 className="text-2xl-compact md:text-2xl">{doc.h1}</h1>
-      <div className="mt-8 max-w-prose rounded-card border-2 border-sand bg-sand-soft p-6">
-        <p className="font-semibold text-gold-deep">{c.legal.placeholder}</p>
-        <p className="mt-2">{doc.notice}</p>
-      </div>
-      <ul className="mt-8 max-w-prose list-disc space-y-2 pl-6">
-        {doc.topics.map((t) => (
-          <li key={t}>{t}</li>
-        ))}
-      </ul>
+      <h1 className="text-2xl-compact text-ocean md:text-2xl">{doc.h1}</h1>
+      {doc.sections ? (
+        <div className="mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
+          {doc.sections.map((s) => (
+            <section key={s.title} className="rounded-card bg-ice p-6">
+              <h2 className="flex items-center gap-3 text-base text-ocean">
+                <span aria-hidden="true" className="h-0.5 w-6 rounded-pill bg-sand" />
+                {s.title}
+              </h2>
+              {s.lines.map((l) => (
+                <p key={l} className="mt-2">
+                  {l.includes("RebelzAi.com") ? (
+                    <>
+                      {l.replace("RebelzAi.com", "")}
+                      <a href="https://rebelzai.com" className="text-link" rel="noopener">RebelzAi.com</a>
+                    </>
+                  ) : l.startsWith("E-Mail") || l.startsWith("Email") ? (
+                    <>
+                      {l.split(":")[0]}: <a href="mailto:info@johnson-services.de" className="text-link">info@johnson-services.de</a>
+                    </>
+                  ) : (
+                    l
+                  )}
+                </p>
+              ))}
+            </section>
+          ))}
+        </div>
+      ) : (
+        <>
+          <div className="mt-8 max-w-prose rounded-card border-2 border-sand bg-white p-6">
+            <p className="font-semibold text-ink">{c.legal.placeholder}</p>
+            <p className="mt-2">{doc.notice}</p>
+          </div>
+          <ul className="mt-8 max-w-prose list-disc space-y-2 pl-6">
+            {doc.topics.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+        </>
+      )}
     </Section>
   );
 }

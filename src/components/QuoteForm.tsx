@@ -32,7 +32,7 @@ const inputClass =
 function Label({ htmlFor, text, required, f }: { htmlFor: string; text: string; required?: boolean; f: FormText }) {
   return (
     <label htmlFor={htmlFor} className="block text-sm font-semibold">
-      {text} <span className="font-normal text-muted">({required ? f.required : f.optional})</span>
+      {text} {!required && <span className="font-normal text-muted">({f.optional})</span>}
     </label>
   );
 }

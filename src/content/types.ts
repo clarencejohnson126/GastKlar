@@ -48,6 +48,7 @@ export interface Content {
       note: string;
       steps: string[];
     };
+    hotspots: { label: string; hint: string; items: { x: number; y: number; title: string; text: string }[] };
     v3: {
       heroSentence: string;
       panels: { verb: string; time: string; text: string; image: string; alt: string }[];
@@ -165,10 +166,11 @@ export interface Content {
   regionShared: { servicesTitle: string; faqTitle: string; trademark: string };
   legal: {
     privacy: { meta: PageMeta; h1: string; notice: string; topics: string[] };
-    imprint: { meta: PageMeta; h1: string; notice: string; topics: string[] };
+    imprint: { meta: PageMeta; h1: string; notice: string; topics: string[]; sections: { title: string; lines: string[] }[] };
     placeholder: string;
   };
   footer: {
+    credits: string;
     navTitle: string;
     regionsTitle: string;
     legalTitle: string;

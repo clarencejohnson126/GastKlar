@@ -39,27 +39,37 @@ export const en: Content = {
         "Visual check against the checklist",
       ],
     },
+    hotspots: {
+      label: "What is done at every turnover",
+      hint: "Tap the points in the picture",
+      items: [
+        { x: 56, y: 70, title: "Beds freshly made", text: "With the linen you provide, smoothed and guest-ready." },
+        { x: 37, y: 61, title: "Towels laid out", text: "Fresh towels from your own stock, neatly folded." },
+        { x: 84, y: 88, title: "Floors and surfaces", text: "Vacuumed, mopped and wiped in every room." },
+        { x: 47, y: 28, title: "Checked against your list", text: "Visual check against your property checklist. Photos on request." },
+      ],
+    },
     v3: {
       heroSentence: "Turnover cleaning and guest services for holiday apartments in Mannheim, Heidelberg and Ludwigshafen. Designed by hosts.",
       panels: [
-        { verb: "Clean.", time: "From 11:00", text: "Kitchen, bathroom, surfaces and floors, thoroughly and to your checklist.", image: "/images/reinigen-kueche.jpg", alt: "A team member wiping the worktop of a period kitchen" },
-        { verb: "Make up.", time: "By 15:00", text: "Fresh beds with your linen, towels laid out, everything topped up.", image: "/images/betten-beziehen.jpg", alt: "Hands smoothing a white bed sheet" },
+        { verb: "Clean.", time: "From 11:00", text: "Kitchen, bathroom, surfaces and floors, thoroughly and to your checklist.", image: "/images/reinigen-kueche-v3.jpg", alt: "A team member wiping the worktop of a period kitchen" },
+        { verb: "Make up.", time: "By 15:00", text: "Fresh beds with your linen, towels laid out, everything topped up.", image: "/images/betten-beziehen-v3.jpg", alt: "Hands smoothing a white bed sheet" },
       ],
       includedTitle: "Always included.",
       blocks: [
-        { title: "Kitchen and bathroom", items: ["Thorough kitchen clean", "Bathroom, shower and toilet", "Surfaces in every room", "Floors vacuumed and mopped"], image: "/images/reinigen-bad.jpg", alt: "A team member cleaning the bathroom washbasin" },
-        { title: "Beds and towels", items: ["Beds stripped", "Remade with your fresh linen", "Towels changed", "Used linen set aside"], image: "/images/abziehen.jpg", alt: "Hands stripping a duvet cover" },
-        { title: "Topping up", items: ["Toilet paper", "Soap and washing-up liquid", "Coffee and tea", "All from your own stock, as agreed"], image: "/images/auffuellen.jpg", alt: "Hands placing toilet paper and soap on a shelf" },
-        { title: "Check and report", items: ["Visual check against your checklist", "Anything unusual reported straight away", "Completion report with photos on request", "Apartment handed over guest-ready"], image: "/images/fertigmeldung.jpg", alt: "A team member photographing the freshly made bed for the completion report" },
+        { title: "Kitchen and bathroom", items: ["Thorough kitchen clean", "Bathroom, shower and toilet", "Surfaces in every room", "Floors vacuumed and mopped"], image: "/images/reinigen-bad-v3.jpg", alt: "A team member cleaning the bathroom washbasin" },
+        { title: "Beds and towels", items: ["Beds stripped", "Remade with your fresh linen", "Towels changed", "Used linen set aside"], image: "/images/abziehen-v3.jpg", alt: "Hands stripping a duvet cover" },
+        { title: "Topping up", items: ["Toilet paper", "Soap and washing-up liquid", "Coffee and tea", "All from your own stock, as agreed"], image: "/images/auffuellen-v3.jpg", alt: "Hands placing toilet paper and soap on a shelf" },
+        { title: "Check and report", items: ["Visual check against your checklist", "Anything unusual reported straight away", "Completion report with photos on request", "Apartment handed over guest-ready"], image: "/images/fertigmeldung-v3.jpg", alt: "A team member photographing the freshly made bed for the completion report" },
       ],
       addonsTitle: "Additional services",
       addonFormat: { keys: "in person or key safe", guestCommunication: "at agreed times", laundry: "collect, wash, return", repairs: "small defects", renovation: "painting, flooring", hostDashboard: "CRM for your properties", shortNotice: "cover and emergencies", other: "your request" },
       letterTitle: "From one host to another",
       letter: [
-        "I have been letting my own properties for more than ten years. I know the moment when one guest has just left and the next will be at the door in four hours.",
-        "Those four hours decide whether your guests arrive and feel at home. That is what GastKlar is for: cleaning that works the way I always wanted it to as a host. To your checklist, agreed in advance and honest about what we promise.",
+        "We have been letting our own properties for more than ten years. We know the moment when one guest has just left and the next will be at the door in four hours.",
+        "Those four hours decide whether your guests arrive and feel at home. That is what GastKlar is for: cleaning that works the way we always wanted it to as hosts. To your checklist, agreed in advance and honest about what we promise.",
       ],
-      letterSign: "Founder of GastKlar Rhein-Neckar",
+      letterSign: "Your GastKlar Rhein-Neckar team",
       placesTitle: "Where we work",
       districts: { mannheim: "Quadrate, Neckarstadt, Lindenhof, Oststadt", heidelberg: "Altstadt, Bergheim, Weststadt, Neuenheim", ludwigshafen: "Mitte, Süd, Friesenheim, Oggersheim" },
       cityImages: { mannheim: { src: "/images/region/2026-07-11-wasserturm-mannheim-friedrichsplatz-z5.jpg", alt: "Water tower on Friedrichsplatz in Mannheim" }, heidelberg: { src: "/images/region/view-of-heidelberg-castle-alte-brucke-and.jpg", alt: "Old Bridge, old town and castle in Heidelberg" }, ludwigshafen: { src: "/images/region/view-konrad-adenauer-bridge-over-the-rhine.jpg", alt: "View across the Rhine towards Ludwigshafen" } },
@@ -82,12 +92,12 @@ export const en: Content = {
       intro: "Four hours in which a lived-in flat becomes a home away from home again. This is what a turnover with us looks like.",
       note: "Example schedule. We agree times and order with you for each property.",
       steps: [
-        { time: "11:00", title: "Handover after check-out", text: "Windows open, a quick inventory, beds stripped. Anything unusual is noted straight away.", image: "/images/wohnzimmer.jpg", alt: "Bright, tidy living room in a holiday apartment" },
-        { time: "11:30", title: "Kitchen", text: "Dishes, worktops, appliances and sink. We top up coffee and tea from your own stock.", image: "/images/kueche.jpg", alt: "Clean kitchen with a refilled coffee jar" },
-        { time: "12:30", title: "Bathroom", text: "Shower, toilet, taps and mirror. Fresh towels, soap and toilet paper laid out.", image: "/images/bad.jpg", alt: "Clean bathroom with folded towels" },
-        { time: "13:30", title: "Beds freshly made", text: "With the linen you provide, smoothed and finished the way guests know from a hotel.", image: "/images/betten-beziehen.jpg", alt: "Hands smoothing a white bed sheet" },
-        { time: "14:30", title: "Checklist inspection", text: "Every point on your property checklist. On request we send a completion report with photos.", image: "/images/waesche.jpg", alt: "Stack of fresh linen in a basket" },
-        { time: "15:00", title: "Guest-ready", text: "The apartment is ready for the next check-in.", image: "/images/hero-schlafzimmer.jpg", alt: "Freshly made bed with folded towels" },
+        { time: "11:00", title: "Handover after check-out", text: "Windows open, a quick inventory, beds stripped. Anything unusual is noted straight away.", image: "/images/wohnzimmer-v3.jpg", alt: "Bright, tidy living room in a holiday apartment" },
+        { time: "11:30", title: "Kitchen", text: "Dishes, worktops, appliances and sink. We top up coffee and tea from your own stock.", image: "/images/kueche-v3.jpg", alt: "Clean kitchen with a refilled coffee jar" },
+        { time: "12:30", title: "Bathroom", text: "Shower, toilet, taps and mirror. Fresh towels, soap and toilet paper laid out.", image: "/images/bad-v3.jpg", alt: "Clean bathroom with folded towels" },
+        { time: "13:30", title: "Beds freshly made", text: "With the linen you provide, smoothed and finished the way guests know from a hotel.", image: "/images/betten-beziehen-v3.jpg", alt: "Hands smoothing a white bed sheet" },
+        { time: "14:30", title: "Checklist inspection", text: "Every point on your property checklist. On request we send a completion report with photos.", image: "/images/waesche-v3.jpg", alt: "Stack of fresh linen in a basket" },
+        { time: "15:00", title: "Guest-ready", text: "The apartment is ready for the next check-in.", image: "/images/hero-schlafzimmer-v3.jpg", alt: "Freshly made bed with folded towels" },
       ],
     },
     core: {
@@ -124,8 +134,8 @@ export const en: Content = {
     host: {
       title: "Built on first-hand hosting experience",
       paragraphs: [
-        "From our own hosting, we know what matters between check-out and check-in. The founder of GastKlar has been letting his own properties for over ten years.",
-        "He knows tight turnover windows, guests with special requests and reviews that hinge on small details. That is exactly what GastKlar is built for.",
+        "From our own hosting, we know what matters between check-out and check-in. We have been letting our own properties for over ten years.",
+        "We know tight turnover windows, guests with special requests and reviews that hinge on small details. That is exactly what GastKlar is built for.",
       ],
       points: [
         "Property-specific checklists rather than a standard routine",
@@ -216,13 +226,13 @@ export const en: Content = {
     meta: {
       title: "About us: by hosts, for hosts",
       description:
-        "GastKlar Rhein-Neckar is a service by Johnson Services. The founder has been letting his own properties for over ten years and knows guest turnovers first-hand.",
+        "We have been letting our own properties for over ten years and know guest turnovers first-hand.",
     },
     h1: "By hosts, for hosts",
     intro: "GastKlar Rhein-Neckar takes care of guest turnovers in holiday apartments, so you can focus on your guests and your business.",
     storyTitle: "Over 10 years of first-hand hosting experience",
     story: [
-      "The founder of GastKlar has been letting his own properties for over ten years. He knows how little time there is between check-out and check-in, and how much a single forgotten detail can affect a review.",
+      "We have been letting our own properties for over ten years. We know how little time there is between check-out and check-in, and how much a single forgotten detail can affect a review.",
       "GastKlar grew out of that experience: a service that works the way hosts would want it to. Thorough, coordinated and honest about what it promises.",
     ],
     principlesTitle: "How we work",
@@ -241,7 +251,7 @@ export const en: Content = {
         "Describe your holiday apartment and the services you need. GastKlar Rhein-Neckar will prepare an individual, no-obligation quote for you.",
     },
     h1: "Request a free quote",
-    intro: "The more detail you give us, the better we can tailor your quote. Required fields are marked; everything else is optional.",
+    intro: "The more detail you give us, the better we can tailor your quote. You can leave fields marked “optional” empty.",
     asideTitle: "What happens next",
     aside: [
       "Your enquiry comes straight to us.",
@@ -414,6 +424,12 @@ export const en: Content = {
       h1: "Legal notice (Impressum)",
       notice:
         "The legal notice will be completed with the confirmed details before the site goes live. Until then, this page is a placeholder. The German version is the legally binding one.",
+      sections: [
+        { title: "Information pursuant to § 5 DDG (German Digital Services Act)", lines: ["Johnson Services", "Owner: Clarence Johnson", "George-Washington-Straße 219", "68309 Mannheim, Germany"] },
+        { title: "Contact", lines: ["Phone: +49 151 57731682", "Email: info@johnson-services.de"] },
+        { title: "Consumer dispute resolution", lines: ["We are neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board."] },
+        { title: "Website", lines: ["Concept, design and development: RebelzAi.com"] },
+      ],
       topics: [
         "Registered business name of Johnson Services and owner",
         "Address for service",
@@ -425,6 +441,7 @@ export const en: Content = {
     placeholder: "Placeholder – not yet confirmed",
   },
   footer: {
+    credits: "Image credits",
     navTitle: "Navigation",
     regionsTitle: "Region",
     legalTitle: "Legal",

@@ -7,7 +7,7 @@ const buttonBase =
   "inline-flex min-h-12 items-center justify-center rounded-control px-6 py-3 text-center text-sm font-semibold transition-colors duration-200 ease-soft";
 
 const buttonVariants = {
-  primary: "bg-ocean text-white hover:bg-ocean-deep",
+  primary: "bg-ocean text-white hover:bg-ocean/90",
   secondary: "border-2 border-ocean bg-white text-ocean hover:bg-ice",
   inverse: "bg-white text-ocean hover:bg-ice",
 } as const;
@@ -30,7 +30,7 @@ export function CtaLink({
   );
 }
 
-export const submitButtonClass = `${buttonBase} ${buttonVariants.primary} disabled:cursor-wait disabled:bg-ocean-deep`;
+export const submitButtonClass = `${buttonBase} ${buttonVariants.primary} disabled:cursor-wait disabled:bg-ocean/80`;
 
 export function Section({
   id,

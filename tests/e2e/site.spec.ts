@@ -86,7 +86,6 @@ test.describe("Inhaltsregeln (Copy-Guard)", () => {
   test("Host-Erfahrung prominent auf der Startseite", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByText("Über 10 Jahre eigene Host-Erfahrung").first()).toBeVisible();
-    await expect(page.getByText("Ein Service von Johnson Services.").first()).toBeVisible();
   });
 });
 

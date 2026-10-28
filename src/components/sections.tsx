@@ -51,7 +51,7 @@ export function AddonsList({ c, withHeading = true, cta }: { c: Content; withHea
           <li key={k} {...r(i)} className="grid gap-2 md:grid-cols-12 md:gap-6">
             <h3 className="text-lg md:col-span-4">{c.addons[k].title}</h3>
             <p className="max-w-prose md:col-span-6">{c.addons[k].text}</p>
-            <p className="text-gold-deep md:col-span-2 md:text-right">{c.home.addons.tags[k]}</p>
+            <p className="text-ocean md:col-span-2 md:text-right">{c.home.addons.tags[k]}</p>
           </li>
         ))}
       </ul>

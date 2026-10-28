@@ -1,176 +1,260 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties } from "react";
-import { pathFor, regionKeys, type Locale, type PageId } from "@/config/routes";
+import type { CSSProperties, ReactNode } from "react";
+import { pathFor, regionKeys, type Locale } from "@/config/routes";
+import { site } from "@/config/site";
 import type { Content } from "@/content/types";
 import { addonKeys } from "@/modules/leads/schema";
-import { MobileMenu } from "./MobileMenu";
-import { TurnoverPlanner } from "./TurnoverPlanner";
+import { HotspotImage } from "./HotspotImage";
+import { QuoteForm } from "./QuoteForm";
+import { CtaLink, Icon } from "./ui";
 
 /*
- * Startseite nach dem Richtungsblatt „The pinned poster“ (taste-skill v2, seed 920263089).
- * Idee: „Gast“ und „klar“ halten zwei Ecken, dazwischen zieht der Gästewechsel vorbei.
+ * Startseite nach 03_DESIGN_SYSTEM.md, Abschnitt „Design sections“ (Reihenfolge verbindlich):
+ * Hero · Kernleistungen · Zusatzleistungen · Ablauf · Gastgeber-Erfahrung · Rhein-Neckar · FAQ · Angebotsformular.
+ * Header und Footer kommen aus der Shell (views/render.tsx).
  */
 
 const r = (i: number) => ({ "data-reveal": "", style: { "--reveal-i": i } as CSSProperties });
 
-const btn =
-  "press inline-flex min-h-13 items-center justify-center px-7 text-base font-medium";
-
-function LangLink({ locale, pageId, c, className = "" }: { locale: Locale; pageId: PageId; c: Content; className?: string }) {
-  const other: Locale = locale === "de" ? "en" : "de";
+function SectionHead({ id, kicker, title, intro, light = false }: { id: string; kicker?: string; title: string; intro?: string; light?: boolean }) {
   return (
-    <a href={pathFor(pageId, other)} hrefLang={other} lang={other} className={className}>
-      <span aria-hidden="true">{c.locale.switchLabel}</span>
-      <span className="sr-only">{c.locale.switchName}</span>
-    </a>
+    <div className="max-w-[44rem]">
+      {kicker && (
+        <p {...r(0)} className={`flex items-center gap-3 text-sm font-semibold ${light ? "text-white" : "text-ocean"}`}>
+          <span aria-hidden="true" className="h-0.5 w-8 rounded-pill bg-sand" />
+          {kicker}
+        </p>
+      )}
+      <h2 id={id} {...r(1)} className={`mt-4 text-2xl-compact md:text-2xl ${light ? "text-white" : "text-ocean"}`}>
+        {title}
+      </h2>
+      {intro && (
+        <p {...r(2)} className={`mt-5 ${light ? "text-white/90" : "text-muted"}`}>
+          {intro}
+        </p>
+      )}
+    </div>
   );
 }
 
-/** Hero + gepinnter Lauf: zwei Bildschirme Gästewechsel unter „Gast“ … „klar“ */
-export function PinnedTurnover({ locale, c }: { locale: Locale; c: Content }) {
-  const v = c.home.v3;
-  const links = [
-    { href: pathFor("services", locale), label: c.nav.services },
-    { href: pathFor("about", locale), label: c.nav.about },
-    { href: "#orte", label: c.nav.regions },
-  ];
+/** Hero: starke Aussage (04), Trust „Über 10 Jahre eigene Host-Erfahrung“, Hotspot-Bild, CTA (03) */
+export function Hero({ locale, c }: { locale: Locale; c: Content }) {
   return (
-    <section aria-labelledby="home-title" className="relative bg-white">
-      <div className="pointer-events-none relative z-20 h-[120svh] md:sticky md:top-0 md:h-svh">
-        {/* Das h1 zeigt „Gast“ (oben links); „klar“ ist die zweite Hälfte des Namens unten rechts */}
-        <h1
-          id="home-title"
-          aria-label={`GastKlar Rhein-Neckar: ${c.brand.tagline}`}
-          className="pointer-events-auto absolute left-4 top-4 font-display text-display font-bold tracking-tight text-ocean md:left-7 md:top-7"
-        >
-          Gast
-        </h1>
-        <p
-          aria-hidden="true"
-          className="pointer-events-auto absolute bottom-4 right-4 font-display text-display font-bold leading-[0.88] tracking-tight text-ocean md:bottom-7 md:right-7"
-        >
-          klar
-        </p>
-      </div>
-
-      <div className="-mt-[120svh] md:-mt-[100svh]">
-        {/* Bildschirm 1: weiße Fläche Spalten 1–9, Foto Spalten 10–12 */}
-        <div className="relative grid min-h-[120svh] grid-cols-12 md:min-h-svh">
-          <div className="col-span-12 flex flex-col px-4 pb-32 pt-8 md:col-span-9 md:grid md:grid-cols-9 md:items-center md:px-7 md:py-0">
-            <div className="md:col-span-5 md:col-start-3">
-              <p {...r(0)} className="max-w-[34ch] text-lg">
-                {v.heroSentence}
-              </p>
-              <div {...r(1)} className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
-                <Link href={pathFor("quote", locale)} className={`${btn} bg-ocean text-white hover:bg-ocean-deep`}>
-                  {c.cta.primary}
-                </Link>
-              </div>
-              <p {...r(2)} className="mt-10 text-sm font-medium">
-                {c.brand.experience}. {c.brand.byOperator}
-              </p>
-            </div>
-            <nav aria-label={c.nav.main} className="hidden md:col-span-2 md:col-start-8 md:block md:justify-self-end">
-              <ul className="space-y-2 text-right text-sm">
-                {links.map((l) => (
-                  <li key={l.href}>
-                    <Link href={l.href} className="inline-block py-1 hover:text-ocean">
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
-                <li>
-                  <LangLink locale={locale} pageId="home" c={c} className="inline-block py-1 text-ocean hover:underline" />
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div className="relative order-first col-span-12 mx-4 mt-[22svh] h-[40svh] overflow-hidden md:order-none md:col-span-3 md:mx-0 md:mt-0 md:mb-[28svh] md:h-auto">
-            <Image
-              src="/images/hero-schlafzimmer.jpg"
-              alt={c.home.heroImageAlt}
-              fill
-              priority
-              sizes="(min-width: 768px) 25vw, 100vw"
-              className="slow-settle object-cover object-[68%_50%]"
-            />
-          </div>
-          <div className="absolute right-4 top-4 z-30 md:hidden">
-            <MobileMenu
-              labels={{ menu: c.nav.menu, close: c.nav.close, main: c.nav.main }}
-              links={[...links, { href: pathFor("quote", locale), label: c.nav.quote }]}
-              footer={<LangLink locale={locale} pageId="home" c={c} className="text-base text-ocean underline" />}
-            />
+    <section aria-labelledby="hero-title" className="relative overflow-hidden bg-white">
+      <div aria-hidden="true" className="absolute inset-y-0 right-0 hidden w-[38%] bg-ice lg:block" />
+      <div className="container-page relative grid items-center gap-12 py-12 lg:grid-cols-12 lg:py-20">
+        <div className="lg:col-span-6">
+          <p {...r(0)} className="inline-flex items-center gap-2 rounded-pill bg-sand px-4 py-2 text-sm font-semibold text-ink">
+            <Icon name="check" className="size-4" />
+            {c.brand.experience}
+          </p>
+          <h1 id="hero-title" {...r(1)} className="mt-6 text-hero font-extrabold text-ocean">
+            {c.home.h1}
+          </h1>
+          <p {...r(2)} className="mt-6 max-w-[34rem] text-lg font-normal leading-snug text-ink">
+            {c.home.sub}
+          </p>
+          <div {...r(3)} className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <CtaLink href="#angebot" className="press shadow-soft">
+              {c.cta.primary}
+            </CtaLink>
+            <CtaLink href={pathFor("services", locale)} variant="secondary" className="press">
+              {c.cta.services}
+            </CtaLink>
           </div>
         </div>
-
-        {/* Bildschirme 2–3: der Wechsel zieht zwischen „Gast“ und „klar“ vorbei */}
-        {v.panels.map((p, i) => (
-          <div key={p.verb} className="grid grid-cols-12 items-center gap-x-6 px-4 py-20 md:min-h-[78svh] md:px-7 md:py-16">
-            <h2 {...r(0)} className="col-span-12 text-xl md:col-span-3 md:col-start-1 md:self-center">
-              {p.verb}
-            </h2>
-            <div
-              {...r(1)}
-              className="relative col-span-12 mt-6 aspect-[4/5] overflow-hidden md:col-span-4 md:col-start-5 md:mt-0"
-            >
-              <Image
-                src={p.image}
-                alt={p.alt}
-                fill
-                sizes="(min-width: 768px) 34vw, 100vw"
-                className={`object-cover ${i === 0 ? "object-right" : ""}`}
-              />
-            </div>
-            <div {...r(2)} className="col-span-12 mt-6 md:col-span-3 md:col-start-9 md:mt-0 md:self-end md:pb-24">
-              <p className="text-lg font-bold tabular-nums text-gold-deep">{p.time}</p>
-              <p className="mt-2 max-w-[32ch]">{p.text}</p>
-            </div>
+        <div className="relative mx-auto w-full max-w-[32.5rem] lg:col-span-6 lg:col-start-7">
+          <HotspotImage data={c.home.hotspots} src="/images/hero-schlafzimmer-v3.jpg" alt={c.home.heroImageAlt} />
+          <div className="absolute -left-4 top-24 hidden size-36 overflow-hidden rounded-pill border-[6px] border-white shadow-lift sm:block lg:-left-14">
+            <Image src="/images/schluesseluebergabe-v4.jpg" alt={c.home.handoverAlt} fill sizes="144px" className="object-cover object-[30%_30%]" />
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );
 }
 
-/** features — Pinned heading, passing rows (Ocean-Fläche) */
-export function Included({ c }: { c: Content }) {
+/** Kernleistungen: Wechselreinigung, immer enthalten */
+export function CoreServices({ c }: { c: Content }) {
+  const core = c.home.core;
+  return (
+    <section id="leistungen" aria-labelledby="core-title" className="bg-ice py-20 lg:py-28">
+      <div className="container-page grid items-center gap-14 lg:grid-cols-12">
+        <div className="relative order-last lg:order-first lg:col-span-5">
+          <div {...r(0)} className="shape-arch relative aspect-[4/5] w-[86%] shadow-soft">
+            <Image src="/images/reinigen-kueche-v3.jpg" alt={c.home.v3.panels[0].alt} fill sizes="(min-width: 1024px) 420px, 86vw" className="object-cover" />
+          </div>
+          <div {...r(1)} className="absolute -bottom-6 right-0 aspect-square w-[46%] overflow-hidden rounded-pill border-[6px] border-ice shadow-soft">
+            <Image src="/images/reinigen-bad-v3.jpg" alt={c.home.v3.blocks[0].alt} fill sizes="(min-width: 1024px) 220px, 46vw" className="object-cover" />
+          </div>
+        </div>
+        <div className="lg:col-span-6 lg:col-start-7">
+          <SectionHead id="core-title" kicker={c.nav.services} title={core.title} intro={core.intro} />
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+            {core.items.map((item, i) => (
+              <li key={item} {...r(i)} className="flex gap-3 rounded-card bg-white p-4 shadow-soft">
+                <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-pill bg-sand text-ink">
+                  <Icon name="check" className="size-4" />
+                </span>
+                <span className="text-sm leading-snug">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p {...r(2)} className="mt-6 text-sm text-muted">
+            {core.note} {core.variants}
+          </p>
+          <div {...r(3)} className="mt-8">
+            <CtaLink href="#angebot" className="press">
+              {c.cta.primary}
+            </CtaLink>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Zusatzleistungen als klare Icons/Karten (03) */
+export function Addons({ c }: { c: Content }) {
+  return (
+    <section aria-labelledby="addons-title" className="bg-white py-20 lg:py-28">
+      <div className="container-page">
+        <SectionHead id="addons-title" kicker={c.form.fields.addonsLegend} title={c.home.addons.title} intro={c.home.addons.intro} />
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {addonKeys.map((k, i) => (
+            <li
+              key={k}
+              {...r(i % 4)}
+              className="group flex flex-col rounded-card border border-line bg-white p-6 shadow-soft transition-shadow duration-200 hover:shadow-lift"
+            >
+              <span className="flex size-12 items-center justify-center rounded-pill bg-sand text-ink transition-transform duration-200 group-hover:scale-105">
+                <Icon name={k} />
+              </span>
+              <h3 className="mt-5 text-base leading-snug text-ocean">{c.addons[k].title}</h3>
+              <p className="mt-2 flex-1 text-sm text-muted">{c.addons[k].text}</p>
+              <p className="mt-4 inline-flex w-fit rounded-pill bg-ice px-3 py-1 text-xs font-semibold text-ocean">
+                {c.home.addons.tags[k]}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+/** Einfacher Ablauf */
+export function Steps({ c }: { c: Content }) {
+  return (
+    <section id="ablauf" aria-labelledby="process-title" className="bg-ice py-20 lg:py-28">
+      <div className="container-page">
+        <SectionHead id="process-title" kicker={c.quote.asideTitle} title={c.home.process.title} />
+        <ol className="relative mt-14 grid gap-8 md:grid-cols-5">
+          <span aria-hidden="true" className="absolute left-6 right-6 top-6 hidden h-0.5 rounded-pill bg-sand md:block" />
+          {c.home.process.steps.map((s, i) => (
+            <li key={s.title} {...r(i)} className="relative">
+              <span className="relative flex size-12 items-center justify-center rounded-pill bg-ocean font-display text-lg font-bold text-white ring-8 ring-ice">
+                {i + 1}
+              </span>
+              <h3 className="mt-5 text-base text-ocean">{s.title}</h3>
+              <p className="mt-2 text-sm text-muted">{s.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+/** Gastgeber-Erfahrung */
+export function HostExperience({ c }: { c: Content }) {
+  const h = c.home.host;
+  return (
+    <section aria-labelledby="host-title" className="bg-white py-20 lg:py-28">
+      <div className="container-page grid items-center gap-14 lg:grid-cols-12">
+        <div className="relative lg:col-span-5">
+          <div {...r(0)} className="shape-arch relative aspect-[4/5] w-full max-w-[28rem] shadow-lift">
+            <Image src="/images/schluesseluebergabe-v4.jpg" alt={c.home.handoverAlt} fill sizes="(min-width: 1024px) 448px, 100vw" className="object-cover" />
+          </div>
+          <div aria-hidden="true" className="absolute -bottom-5 -right-2 hidden size-28 rounded-pill bg-sand lg:block" />
+        </div>
+        <div className="lg:col-span-6 lg:col-start-7">
+          <SectionHead id="host-title" kicker={c.brand.experience} title={h.title} />
+          <blockquote {...r(2)} className="mt-8 border-l-4 border-sand pl-6 font-display text-lg font-bold leading-snug text-ocean [text-wrap:balance]">
+            {h.paragraphs[0].split(". ")[0]}.
+          </blockquote>
+          {h.paragraphs.map((p) => (
+            <p key={p} {...r(3)} className="mt-5 text-ink">
+              {p}
+            </p>
+          ))}
+          <ul className="mt-8 space-y-3">
+            {h.points.map((p, i) => (
+              <li key={p} {...r(i + 3)} className="flex items-center gap-3">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-pill bg-sand text-ink">
+                  <Icon name="check" className="size-4" />
+                </span>
+                {p}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Rhein-Neckar-Gebiet: Meeresblau-Fläche, Städte mit runden Bildern */
+export function RegionArea({ locale, c }: { locale: Locale; c: Content }) {
   const v = c.home.v3;
   return (
-    <section aria-labelledby="included-title" className="on-ocean bg-ocean text-white">
-      <div className="container-page grid grid-cols-12 gap-x-6 pb-32 md:py-32">
-        <div className="col-span-12 md:col-span-5">
-          <h2
-            id="included-title"
-            className="sticky top-0 z-10 -mx-4 bg-ocean px-4 py-3 text-xl md:top-8 md:mx-0 md:px-0 md:py-0"
-          >
-            {v.includedTitle}
-          </h2>
-        </div>
-        <div className="col-span-12 mt-12 space-y-20 md:col-span-6 md:col-start-7 md:mt-0 md:space-y-32">
-          {v.blocks.map((b, i) => (
-            <div key={b.title}>
-              <h3 {...r(0)} className="text-lg">
-                {b.title}
-              </h3>
-              <div className={`mt-6 flex flex-col gap-6 sm:flex-row sm:items-start ${i % 2 ? "sm:flex-row-reverse sm:justify-end" : ""}`}>
-                <div {...r(1)} className="relative aspect-[3/4] w-full shrink-0 overflow-hidden sm:w-52">
-                  <Image
-                    src={b.image}
-                    alt={b.alt}
-                    fill
-                    sizes="(min-width: 640px) 208px, 100vw"
-                    className="object-cover"
-                  />
+    <section id="region" aria-labelledby="region-title" className="on-ocean bg-ocean py-20 text-white lg:py-28">
+      <div className="container-page">
+        <SectionHead id="region-title" kicker="Rhein-Neckar" title={c.home.region.title} intro={c.home.region.text} light />
+        <ul className="mt-14 grid gap-10 sm:grid-cols-3">
+          {regionKeys.map((key, i) => (
+            <li key={key} {...r(i)}>
+              <Link href={pathFor(`region-${key}`, locale)} className="group block rounded-card">
+                <div className="relative mx-auto aspect-square w-full max-w-[17rem] overflow-hidden rounded-pill border-[6px] border-sand transition-transform duration-300 group-hover:scale-[1.02]">
+                  <Image src={v.cityImages[key].src} alt={v.cityImages[key].alt} fill sizes="(min-width: 640px) 272px, 80vw" className="object-cover" />
                 </div>
-                <ul {...r(2)} className="space-y-3.5">
-                  {b.items.map((it) => (
-                    <li key={it}>{it}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+                <h3 className="mt-6 text-center text-xl text-white">{c.regions[key].name}</h3>
+                <p className="mt-2 text-center text-sm text-white/90">{v.districts[key]}</p>
+                <p className="mt-3 text-center text-sm font-semibold text-white underline decoration-sand decoration-2 underline-offset-4">
+                  {c.regions[key].meta.title}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+/** FAQ als echte Akkordeons */
+export function Faq({ c }: { c: Content }) {
+  return (
+    <section id="faq" aria-labelledby="faq-title" className="bg-white py-20 lg:py-28">
+      <div className="container-page grid gap-12 lg:grid-cols-12">
+        <div className="lg:col-span-4">
+          <SectionHead id="faq-title" kicker="FAQ" title={c.home.faq.title} />
+          <div {...r(3)} className="relative mt-10 hidden aspect-square w-56 overflow-hidden rounded-pill border-[6px] border-ice shadow-soft lg:block">
+            <Image src="/images/waesche-v3.jpg" alt={c.home.addons.collageAlt[1]} fill sizes="224px" className="object-cover" />
+          </div>
+        </div>
+        <div className="space-y-3 lg:col-span-8">
+          {c.home.faq.items.map((f, i) => (
+            <details key={f.q} {...r(i)} className="group rounded-card bg-ice px-6 open:bg-white open:shadow-soft open:ring-1 open:ring-line">
+              <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-4 font-display text-base font-bold text-ocean [&::-webkit-details-marker]:hidden">
+                <span>{f.q}</span>
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-pill bg-sand text-ink transition-transform duration-200 group-open:rotate-45">
+                  <Icon name="other" className="size-5" />
+                </span>
+              </summary>
+              <p className="max-w-prose pb-6 text-muted">{f.a}</p>
+            </details>
           ))}
         </div>
       </div>
@@ -178,170 +262,53 @@ export function Included({ c }: { c: Content }) {
   );
 }
 
-/** list — Line-up at one type size: Zusatzleistungen ohne Preise */
-export function AddonLineup({ c }: { c: Content }) {
-  const v = c.home.v3;
+/** Angebotsformular direkt auf der Startseite (03) */
+export function QuoteSection({ locale, c }: { locale: Locale; c: Content }) {
+  const q = c.quote;
   return (
-    <section aria-labelledby="lineup-title" className="bg-ice py-32">
-      <div className="container-page">
-        <h2 id="lineup-title" {...r(0)} className="mb-5 text-lg text-ocean">
-          {v.addonsTitle}
-        </h2>
-        <table className="w-full text-lg">
-          <caption className="sr-only">{v.addonsTitle}</caption>
-          <tbody>
-            {addonKeys.map((k, i) => (
-              <tr key={k} {...r(i + 1)} className="flex flex-col py-3 md:table-row md:py-0">
-                <th scope="row" className="py-2 text-left font-normal md:w-1/3">
-                  {c.addons[k].title}
-                </th>
-                <td className="py-1 text-base text-muted md:w-1/3 md:py-2 md:text-lg md:text-ink">{v.addonFormat[k]}</td>
-                <td className="py-1 text-base text-gold-deep md:py-2 md:text-right md:text-lg">{c.home.addons.tags[k]}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
-  );
-}
-
-/** about — Founder's letter */
-export function FounderLetter({ c }: { c: Content }) {
-  const v = c.home.v3;
-  return (
-    <section aria-labelledby="letter-title" className="bg-white py-40">
-      <div className="mx-auto max-w-[32.5rem] px-4">
-        <h2 id="letter-title" {...r(0)} className="text-lg">
-          {v.letterTitle}
-        </h2>
-        {v.letter.map((p, i) => (
-          <p key={p} {...r(i + 1)} className="mt-6">
-            {p}
-          </p>
-        ))}
-        <p {...r(4)} className="mt-10 font-medium">
-          {v.letterSign}
-          <span className="block font-normal text-muted">{c.brand.byOperator}</span>
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/** showcase — Close-up with column card: eine Stadt je Bild, die Karte wandert eine Spalte weiter */
-export function Places({ locale, c }: { locale: Locale; c: Content }) {
-  const v = c.home.v3;
-  const cols = ["md:col-start-2", "md:col-start-3", "md:col-start-4"];
-  return (
-    <div id="orte">
-      <h2 className="sr-only">{v.placesTitle}</h2>
-      {regionKeys.map((key, i) => {
-        const region = c.regions[key];
-        return (
-          <section key={key} aria-labelledby={`city-${key}`} className="relative isolate flex h-svh items-end md:items-center">
-            <Image src={v.cityImages[key].src} alt={v.cityImages[key].alt} fill loading="eager" sizes="100vw" className="-z-10 object-cover" />
-            <div className="grid w-full grid-cols-4 md:px-7">
-              <div
-                {...r(0)}
-                className={`on-ink col-span-4 flex min-h-[46svh] flex-col bg-ink p-5 text-white md:col-span-1 md:min-h-[52svh] md:items-center md:p-6 md:text-center ${cols[i]}`}
-              >
-                <h2 id={`city-${key}`} className="text-lg">
-                  {region.name}
-                </h2>
-                <p className="mt-3 text-sm text-white/85">{v.districts[key]}</p>
-                <p className="mt-3 text-sm font-medium text-sand">{region.meta.title}</p>
-                <Link
-                  href={pathFor(`region-${key}`, locale)}
-                  className={`${btn} mt-auto w-full bg-white text-ink hover:bg-ice`}
-                >
-                  {v.cityMore} {region.name}
-                </Link>
-              </div>
-            </div>
-          </section>
-        );
-      })}
-    </div>
-  );
-}
-
-/** faq — Questions beside a tall photograph */
-export function HomeFaq({ locale, c }: { locale: Locale; c: Content }) {
-  const v = c.home.v3;
-  return (
-    <section aria-labelledby="faq-title" className="bg-ice">
-      <div className="container-page grid grid-cols-12 gap-x-6 py-24 md:py-32">
-        <div className="col-span-12 md:col-span-5">
-          <h2 id="faq-title" {...r(0)} className="text-xl">
-            {c.home.faq.title}
-          </h2>
-          <ul {...r(1)} className="mt-8 space-y-2">
-            {v.faqFacts.map((f) => (
-              <li key={f}>{f}</li>
-            ))}
-          </ul>
-          <div className="mt-12 space-y-7">
-            {c.home.faq.items.map((f) => (
-              <details key={f.q} className="group">
-                <summary className="flex min-h-11 cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium [&::-webkit-details-marker]:hidden">
-                  <span>{f.q}</span>
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    className="mt-1 size-5 shrink-0 text-ocean transition-transform duration-200 ease-soft group-open:rotate-180"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="m6 9 6 6 6-6" />
-                  </svg>
-                </summary>
-                <p className="mt-3 max-w-prose text-muted">{f.a}</p>
-              </details>
-            ))}
-          </div>
-          <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <Link href={pathFor("quote", locale)} className={`${btn} bg-ocean text-white hover:bg-ocean-deep`}>
-              {c.cta.primary}
-            </Link>
-            <Link href={pathFor("services", locale)} className="text-link">
-              {c.cta.services}
-            </Link>
+    <section id="angebot" aria-labelledby="quote-title" className="bg-ice py-20 lg:py-28">
+      <div className="container-page grid gap-12 lg:grid-cols-12">
+        <div className="lg:col-span-4">
+          <SectionHead id="quote-title" kicker={c.nav.quote} title={q.h1} intro={q.intro} />
+          <div {...r(3)} className="mt-8 rounded-card bg-white p-6 shadow-soft">
+            <p className="font-display text-base font-bold text-ocean">{q.asideTitle}</p>
+            <ol className="mt-4 space-y-3">
+              {q.aside.map((s, i) => (
+                <li key={s} className="flex gap-3 text-sm">
+                  <span className="flex size-6 shrink-0 items-center justify-center rounded-pill bg-sand text-xs font-bold text-ink">{i + 1}</span>
+                  {s}
+                </li>
+              ))}
+            </ol>
+            <p className="mt-5 border-t border-line pt-4 text-sm text-muted">{q.noPrice}</p>
           </div>
         </div>
-        <div className="relative col-span-12 order-first mb-16 md:order-none md:col-span-6 md:col-start-7 md:mb-0">
-          <div className="relative aspect-[4/5] overflow-hidden md:-mt-48 md:aspect-[3/4]">
-            <Image src="/images/wohnzimmer.jpg" alt={c.home.hostImageAlt} fill loading="eager" sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
-          </div>
-          <div
-            className="absolute -bottom-10 right-0 aspect-square w-[38%] overflow-hidden md:-left-10 md:right-auto md:w-1/3"
-          >
-            <Image src="/images/waesche.jpg" alt={c.home.addons.collageAlt[1]} fill loading="eager" sizes="(min-width: 768px) 15vw, 40vw" className="object-cover" />
-          </div>
+        <div className="lg:col-span-8">
+          <QuoteForm
+            f={c.form}
+            addons={c.addons}
+            locale={locale}
+            privacyHref={pathFor("privacy", locale)}
+            quoteHref={pathFor("quote", locale)}
+            contactEmail={site.company.email}
+          />
         </div>
       </div>
     </section>
   );
 }
 
-/** cta — Last photograph, text beside (rechte Hälfte als Ink-Fläche mit dem Wechsel-Planer) */
-export function PlannerCta({ locale, c }: { locale: Locale; c: Content }) {
-  const v = c.home.v3;
+export function HomeSections({ locale, c }: { locale: Locale; c: Content }): ReactNode {
   return (
-    <section aria-labelledby="planner-title" className="on-ink grid bg-ink text-white lg:min-h-[90svh] lg:grid-cols-12">
-      <div className="relative h-[56svh] lg:col-span-7 lg:h-auto">
-        <Image src="/images/schluesseluebergabe.jpg" alt={c.home.handoverAlt} fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
-      </div>
-      <div className="px-4 py-16 md:px-7 lg:col-span-5 lg:px-16 lg:py-24">
-        <h2 id="planner-title" {...r(0)} className="text-xl">
-          {v.plannerTitle}
-        </h2>
-        <p {...r(1)} className="mt-6 max-w-[40ch]">
-          {v.plannerText}
-        </p>
-        <TurnoverPlanner v={v} action={pathFor("quote", locale)} cta={v.plannerSubmit} />
-      </div>
-    </section>
+    <>
+      <Hero locale={locale} c={c} />
+      <CoreServices c={c} />
+      <Addons c={c} />
+      <Steps c={c} />
+      <HostExperience c={c} />
+      <RegionArea locale={locale} c={c} />
+      <Faq c={c} />
+      <QuoteSection locale={locale} c={c} />
+    </>
   );
 }

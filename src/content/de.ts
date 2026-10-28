@@ -39,27 +39,37 @@ export const de: Content = {
         "Sichtprüfung nach Checkliste",
       ],
     },
+    hotspots: {
+      label: "Was bei jedem Gästewechsel erledigt ist",
+      hint: "Punkte im Bild antippen",
+      items: [
+        { x: 56, y: 70, title: "Betten frisch bezogen", text: "Mit Ihrer bereitgestellten Wäsche, glatt gezogen und gastbereit." },
+        { x: 37, y: 61, title: "Handtücher bereitgelegt", text: "Frische Handtücher aus Ihrem Bestand, ordentlich gefaltet." },
+        { x: 84, y: 88, title: "Böden und Oberflächen", text: "Gesaugt, gewischt und abgewischt, in allen Räumen." },
+        { x: 47, y: 28, title: "Geprüft nach Checkliste", text: "Sichtprüfung nach Ihrer objektbezogenen Checkliste. Auf Wunsch mit Fotos." },
+      ],
+    },
     v3: {
       heroSentence: "Wechselreinigung und Gästeservice für Ferienwohnungen in Mannheim, Heidelberg und Ludwigshafen. Von Gastgebern gedacht.",
       panels: [
-        { verb: "Reinigen.", time: "Ab 11:00", text: "Küche, Bad, Oberflächen und Böden, gründlich und nach Ihrer Checkliste.", image: "/images/reinigen-kueche.jpg", alt: "Eine Mitarbeiterin wischt die Arbeitsfläche einer Altbauküche" },
-        { verb: "Beziehen.", time: "Bis 15:00", text: "Frische Betten mit Ihrer Wäsche, Handtücher bereit, alles aufgefüllt.", image: "/images/betten-beziehen.jpg", alt: "Hände ziehen ein weißes Bettlaken glatt" },
+        { verb: "Reinigen.", time: "Ab 11:00", text: "Küche, Bad, Oberflächen und Böden, gründlich und nach Ihrer Checkliste.", image: "/images/reinigen-kueche-v3.jpg", alt: "Eine Mitarbeiterin wischt die Arbeitsfläche einer Altbauküche" },
+        { verb: "Beziehen.", time: "Bis 15:00", text: "Frische Betten mit Ihrer Wäsche, Handtücher bereit, alles aufgefüllt.", image: "/images/betten-beziehen-v3.jpg", alt: "Hände ziehen ein weißes Bettlaken glatt" },
       ],
       includedTitle: "Immer dabei.",
       blocks: [
-        { title: "Küche und Bad", items: ["Küche gründlich reinigen", "Bad, Dusche und WC reinigen", "Oberflächen in allen Räumen", "Böden saugen und wischen"], image: "/images/reinigen-bad.jpg", alt: "Ein Mitarbeiter reinigt das Waschbecken im Bad" },
-        { title: "Betten und Handtücher", items: ["Betten abziehen", "Mit Ihrer frischen Wäsche neu beziehen", "Handtücher wechseln", "Gebrauchte Wäsche bereitlegen"], image: "/images/abziehen.jpg", alt: "Hände ziehen einen Bettbezug ab" },
-        { title: "Auffüllen", items: ["Toilettenpapier", "Seife und Spülmittel", "Kaffee und Tee", "Alles aus Ihrem Bestand, im abgestimmten Umfang"], image: "/images/auffuellen.jpg", alt: "Hände stellen Toilettenpapier und Seife ins Regal" },
-        { title: "Prüfen und melden", items: ["Sichtprüfung nach Ihrer Checkliste", "Auffälligkeiten sofort melden", "Fertigmeldung mit Fotos auf Wunsch", "Wohnung gastbereit übergeben"], image: "/images/fertigmeldung.jpg", alt: "Ein Mitarbeiter fotografiert das frisch bezogene Bett für die Fertigmeldung" },
+        { title: "Küche und Bad", items: ["Küche gründlich reinigen", "Bad, Dusche und WC reinigen", "Oberflächen in allen Räumen", "Böden saugen und wischen"], image: "/images/reinigen-bad-v3.jpg", alt: "Ein Mitarbeiter reinigt das Waschbecken im Bad" },
+        { title: "Betten und Handtücher", items: ["Betten abziehen", "Mit Ihrer frischen Wäsche neu beziehen", "Handtücher wechseln", "Gebrauchte Wäsche bereitlegen"], image: "/images/abziehen-v3.jpg", alt: "Hände ziehen einen Bettbezug ab" },
+        { title: "Auffüllen", items: ["Toilettenpapier", "Seife und Spülmittel", "Kaffee und Tee", "Alles aus Ihrem Bestand, im abgestimmten Umfang"], image: "/images/auffuellen-v3.jpg", alt: "Hände stellen Toilettenpapier und Seife ins Regal" },
+        { title: "Prüfen und melden", items: ["Sichtprüfung nach Ihrer Checkliste", "Auffälligkeiten sofort melden", "Fertigmeldung mit Fotos auf Wunsch", "Wohnung gastbereit übergeben"], image: "/images/fertigmeldung-v3.jpg", alt: "Ein Mitarbeiter fotografiert das frisch bezogene Bett für die Fertigmeldung" },
       ],
       addonsTitle: "Zusatzleistungen",
       addonFormat: { keys: "persönlich oder per Tresor", guestCommunication: "zu vereinbarten Zeiten", laundry: "abholen, waschen, bringen", repairs: "kleine Mängel", renovation: "Anstrich, Boden", hostDashboard: "CRM für Ihre Objekte", shortNotice: "Ersatz und Notfall", other: "Ihr Wunsch" },
       letterTitle: "Von Gastgeber zu Gastgeber",
       letter: [
-        "Seit über zehn Jahren vermiete ich selbst Unterkünfte. Ich kenne den Moment, in dem der eine Gast gerade gegangen ist und der nächste in vier Stunden vor der Tür steht.",
-        "In diesen vier Stunden entscheidet sich, ob Ihre Gäste ankommen und sich wohlfühlen. Dafür gibt es GastKlar: eine Reinigung, die so arbeitet, wie ich es mir als Gastgeber immer gewünscht habe. Nach Ihrer Checkliste, abgestimmt und ehrlich in dem, was wir zusagen.",
+        "Seit über zehn Jahren vermieten wir selbst Unterkünfte. Wir kennen den Moment, in dem der eine Gast gerade gegangen ist und der nächste in vier Stunden vor der Tür steht.",
+        "In diesen vier Stunden entscheidet sich, ob Ihre Gäste ankommen und sich wohlfühlen. Dafür gibt es GastKlar: eine Reinigung, die so arbeitet, wie wir es uns als Gastgeber immer gewünscht habe. Nach Ihrer Checkliste, abgestimmt und ehrlich in dem, was wir zusagen.",
       ],
-      letterSign: "Gründer von GastKlar Rhein-Neckar",
+      letterSign: "Ihr Team von GastKlar Rhein-Neckar",
       placesTitle: "Wo wir arbeiten",
       districts: { mannheim: "Quadrate, Neckarstadt, Lindenhof, Oststadt", heidelberg: "Altstadt, Bergheim, Weststadt, Neuenheim", ludwigshafen: "Mitte, Süd, Friesenheim, Oggersheim" },
       cityImages: { mannheim: { src: "/images/region/2026-07-11-wasserturm-mannheim-friedrichsplatz-z5.jpg", alt: "Wasserturm am Friedrichsplatz in Mannheim" }, heidelberg: { src: "/images/region/view-of-heidelberg-castle-alte-brucke-and.jpg", alt: "Alte Brücke, Altstadt und Schloss in Heidelberg" }, ludwigshafen: { src: "/images/region/view-konrad-adenauer-bridge-over-the-rhine.jpg", alt: "Blick über den Rhein auf Ludwigshafen" } },
@@ -82,12 +92,12 @@ export const de: Content = {
       intro: "Vier Stunden, in denen aus einer bewohnten Wohnung wieder ein Zuhause auf Zeit wird. So sieht ein Wechsel bei uns aus.",
       note: "Beispielhafter Ablauf. Zeiten und Reihenfolge stimmen wir je Unterkunft mit Ihnen ab.",
       steps: [
-        { time: "11:00", title: "Übernahme nach dem Check-out", text: "Fenster auf, Bestandsaufnahme, Betten abziehen. Auffälligkeiten halten wir sofort fest.", image: "/images/wohnzimmer.jpg", alt: "Helles, aufgeräumtes Wohnzimmer einer Ferienwohnung" },
-        { time: "11:30", title: "Küche", text: "Geschirr, Arbeitsflächen, Geräte und Spüle. Kaffee und Tee füllen wir aus Ihrem Bestand auf.", image: "/images/kueche.jpg", alt: "Saubere Küche mit aufgefülltem Kaffeeglas" },
-        { time: "12:30", title: "Bad und Sanitär", text: "Dusche, WC, Armaturen und Spiegel. Frische Handtücher, Seife und Toilettenpapier liegen bereit.", image: "/images/bad.jpg", alt: "Sauberes Bad mit gefalteten Handtüchern" },
-        { time: "13:30", title: "Betten frisch beziehen", text: "Mit Ihrer bereitgestellten Wäsche, glatt gezogen und so, wie Gäste es aus dem Hotel kennen.", image: "/images/betten-beziehen.jpg", alt: "Hände ziehen ein weißes Bettlaken glatt" },
-        { time: "14:30", title: "Sichtprüfung nach Checkliste", text: "Jeder Punkt Ihrer objektbezogenen Checkliste. Auf Wunsch schicken wir eine Fertigmeldung mit Fotos.", image: "/images/waesche.jpg", alt: "Gestapelte frische Bettwäsche im Korb" },
-        { time: "15:00", title: "Gastbereit", text: "Die Wohnung ist bereit für den nächsten Check-in.", image: "/images/hero-schlafzimmer.jpg", alt: "Frisch bezogenes Bett mit gefalteten Handtüchern" },
+        { time: "11:00", title: "Übernahme nach dem Check-out", text: "Fenster auf, Bestandsaufnahme, Betten abziehen. Auffälligkeiten halten wir sofort fest.", image: "/images/wohnzimmer-v3.jpg", alt: "Helles, aufgeräumtes Wohnzimmer einer Ferienwohnung" },
+        { time: "11:30", title: "Küche", text: "Geschirr, Arbeitsflächen, Geräte und Spüle. Kaffee und Tee füllen wir aus Ihrem Bestand auf.", image: "/images/kueche-v3.jpg", alt: "Saubere Küche mit aufgefülltem Kaffeeglas" },
+        { time: "12:30", title: "Bad und Sanitär", text: "Dusche, WC, Armaturen und Spiegel. Frische Handtücher, Seife und Toilettenpapier liegen bereit.", image: "/images/bad-v3.jpg", alt: "Sauberes Bad mit gefalteten Handtüchern" },
+        { time: "13:30", title: "Betten frisch beziehen", text: "Mit Ihrer bereitgestellten Wäsche, glatt gezogen und so, wie Gäste es aus dem Hotel kennen.", image: "/images/betten-beziehen-v3.jpg", alt: "Hände ziehen ein weißes Bettlaken glatt" },
+        { time: "14:30", title: "Sichtprüfung nach Checkliste", text: "Jeder Punkt Ihrer objektbezogenen Checkliste. Auf Wunsch schicken wir eine Fertigmeldung mit Fotos.", image: "/images/waesche-v3.jpg", alt: "Gestapelte frische Bettwäsche im Korb" },
+        { time: "15:00", title: "Gastbereit", text: "Die Wohnung ist bereit für den nächsten Check-in.", image: "/images/hero-schlafzimmer-v3.jpg", alt: "Frisch bezogenes Bett mit gefalteten Handtüchern" },
       ],
     },
     core: {
@@ -124,8 +134,8 @@ export const de: Content = {
     host: {
       title: "Aus eigener Host-Erfahrung",
       paragraphs: [
-        "Aus eigener Host-Erfahrung wissen wir, worauf es zwischen Check-out und Check-in ankommt. Der Gründer von GastKlar vermietet seit über zehn Jahren eigene Unterkünfte.",
-        "Er kennt knappe Wechselzeiten, Gäste mit Sonderwünschen und Bewertungen, die an Kleinigkeiten hängen. Genau dafür ist GastKlar gemacht.",
+        "Aus eigener Host-Erfahrung wissen wir, worauf es zwischen Check-out und Check-in ankommt. Wir vermieten seit über zehn Jahren selbst Unterkünfte.",
+        "Wir kennen knappe Wechselzeiten, Gäste mit Sonderwünschen und Bewertungen, die an Kleinigkeiten hängen. Genau dafür ist GastKlar gemacht.",
       ],
       points: [
         "Objektbezogene Checklisten statt Standardprogramm",
@@ -216,13 +226,13 @@ export const de: Content = {
     meta: {
       title: "Über uns: von Gastgebern für Gastgeber",
       description:
-        "GastKlar Rhein-Neckar ist ein Service von Johnson Services. Der Gründer vermietet seit über zehn Jahren eigene Unterkünfte und kennt den Gästewechsel aus erster Hand.",
+        "Wir vermieten seit über zehn Jahren selbst Unterkünfte und kennen den Gästewechsel aus erster Hand.",
     },
     h1: "Von Gastgebern für Gastgeber",
     intro: "GastKlar Rhein-Neckar übernimmt den Gästewechsel in Ferienwohnungen, damit Sie sich auf Ihre Gäste und Ihr Geschäft konzentrieren können.",
     storyTitle: "Über 10 Jahre eigene Host-Erfahrung",
     story: [
-      "Der Gründer von GastKlar vermietet seit über zehn Jahren eigene Unterkünfte. Er weiß, wie wenig Zeit zwischen Check-out und Check-in bleibt und wie sehr eine einzige vergessene Kleinigkeit die Bewertung beeinflussen kann.",
+      "Wir vermieten seit über zehn Jahren selbst Unterkünfte. Wir wissen, wie wenig Zeit zwischen Check-out und Check-in bleibt und wie sehr eine einzige vergessene Kleinigkeit die Bewertung beeinflussen kann.",
       "Aus dieser Erfahrung ist GastKlar entstanden: ein Service, der so arbeitet, wie Gastgeber es sich selbst wünschen. Gründlich, abgestimmt und ehrlich in dem, was zugesagt wird.",
     ],
     principlesTitle: "Wie wir arbeiten",
@@ -241,7 +251,7 @@ export const de: Content = {
         "Beschreiben Sie Ihre Ferienwohnung und die gewünschten Leistungen. GastKlar Rhein-Neckar erstellt Ihnen ein individuelles, unverbindliches Angebot.",
     },
     h1: "Unverbindliches Angebot anfragen",
-    intro: "Je genauer Ihre Angaben, desto passender unser Angebot. Pflichtfelder sind gekennzeichnet, alles andere ist freiwillig.",
+    intro: "Je genauer Ihre Angaben, desto passender unser Angebot. Felder mit dem Zusatz „optional“ können Sie leer lassen.",
     asideTitle: "Was danach passiert",
     aside: [
       "Ihre Anfrage geht direkt bei uns ein.",
@@ -413,6 +423,12 @@ export const de: Content = {
       meta: { title: "Impressum", description: "Impressum und Anbieterkennzeichnung von GastKlar Rhein-Neckar, einem Service von Johnson Services in der Rhein-Neckar-Region." },
       h1: "Impressum",
       notice: "Das Impressum wird vor dem Livegang mit den bestätigten Angaben ergänzt. Diese Seite ist bis dahin ein Platzhalter.",
+      sections: [
+        { title: "Angaben gemäß § 5 DDG", lines: ["Johnson Services", "Inhaber: Clarence Johnson", "George-Washington-Straße 219", "68309 Mannheim"] },
+        { title: "Kontakt", lines: ["Telefon: +49 151 57731682", "E-Mail: info@johnson-services.de"] },
+        { title: "Verbraucherstreitbeilegung", lines: ["Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."] },
+        { title: "Website", lines: ["Konzeption, Gestaltung und Umsetzung: RebelzAi.com"] },
+      ],
       topics: [
         "Eingetragene Firmierung von Johnson Services und Inhaber",
         "Ladungsfähige Anschrift",
@@ -424,6 +440,7 @@ export const de: Content = {
     placeholder: "Platzhalter – noch nicht bestätigt",
   },
   footer: {
+    credits: "Bildnachweise",
     navTitle: "Navigation",
     regionsTitle: "Region",
     legalTitle: "Rechtliches",
