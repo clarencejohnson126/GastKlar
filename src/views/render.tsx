@@ -72,7 +72,7 @@ export function pageMetadata(locale: Locale, slug?: string[]): Metadata {
 /** JSON-LD nur mit gesicherten Angaben (keine Adresse, kein LocalBusiness ohne bestätigte Daten) */
 function JsonLd({ locale, id, c }: { locale: Locale; id: PageId; c: Content }) {
   const region = regionOf(id);
-  const provider = { "@type": "Organization", name: site.brand, url: site.url, parentOrganization: { "@type": "Organization", name: site.operator } };
+  const provider = { "@type": "Organization", name: site.brand, url: site.url};
   const data =
     id === "home"
       ? [
